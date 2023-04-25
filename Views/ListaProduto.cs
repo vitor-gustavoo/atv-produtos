@@ -40,7 +40,7 @@ namespace Views
             lista.Columns.Add("Preço", -2, HorizontalAlignment.Left);
 
             this.Controls.Add(lista);
-            // this.LoadList();
+            this.LoadList();
 
 
             btnInserir = new Button();
@@ -48,9 +48,9 @@ namespace Views
             btnInserir.Location = new Point(100, 600);
             btnInserir.Size =new Size(80, 30);
             btnInserir.Click += (sender, e) => {
-            CadastroProduto produto = new CadastroProduto();
+                CadastroProduto produto = new CadastroProduto();
                 produto.ShowDialog();
-                // this.LoadList();
+                this.LoadList();
             };
             this.Controls.Add(btnInserir);
 
@@ -58,21 +58,30 @@ namespace Views
             btnEditar.Text = "Editar";
             btnEditar.Location = new Point(200, 600);
             btnEditar.Size =new Size(80, 30);
-            // btnEditar.Click += (sender, e) => {
-            //     Controller.Produto.EditarProduto(
-            //         int.Parse(this.lista.SelectedItems[0].SubItems[0].Text)
-            //     );
-            // }; 
+            btnEditar.Click += (sender, e) => 
+            // {
+            //     CadastroProduto produto = new CadastroProduto();
+            //     produto.ShowDialog();
+            //     this.LoadList();
+            // };
             this.Controls.Add(btnEditar);
-
+            
             btnDelete = new Button();
             btnDelete.Text = "Deletar";
             btnDelete.Location = new Point(300, 600);
             btnDelete.Size =new Size(80, 30);
             btnDelete.Click +=(sender, e) => {
-                Controller.Produto.ExcluirProduto(
-               (this.lista.SelectedItems[0].SubItems[0].Text)
-                );
+                DialogResult result = MessageBox.Show("Você deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
+                {
+                    Controller.Produto.ExcluirProduto(
+                    (lista.SelectedItems[0].Text));
+                    this.LoadList();
+                }
+                else if (result == DialogResult.No)
+                {
+                    this.Close();
+                }
             };
             this.Controls.Add(btnDelete);
 
@@ -81,28 +90,26 @@ namespace Views
             btnSair.Location = new Point(400, 600);
             btnSair.Size =new Size(80, 30);
             btnSair.Click += (sender, e) => {
-                Confirmacao confirmacao = new Confirmacao();
-                confirmacao.Show();
-                this.Close();
+            this.Close();
             };
             this.Controls.Add(btnSair);
         }
 
-        // private void LoadList() 
-        // {
+        private void LoadList() 
+        {
             
-        //     lista.Items.Clear();
-        //     foreach(Models.Produto p in Controller.Produto.BuscarProdutoId(id)) 
-        //     {
+            lista.Items.Clear();
+            foreach(Models.Produto p in Controller.Produto.BuscarProdutos()) 
+            {
 
-        //         lista.Items.Add(
-        //             new ListViewItem(new [] { 
-        //                 p.Id.ToString(), p.Nome, p.Preco.ToString()
-        //             })
-        //         );
-        //     }
+                lista.Items.Add(
+                    new ListViewItem(new [] { 
+                        p.Id.ToString(), p.Nome, p.Preco.ToString()
+                    })
+                );
+            }
             
-        // }  
+        }  
     }
 }
 

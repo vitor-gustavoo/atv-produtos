@@ -11,6 +11,8 @@ public class Menu : Form
 {
     private Label lblTitulo;
     private Button btnProduto;
+    private Button btnEstoque;
+    private Button btnSaldo;
     private Button btnSair;
 
   
@@ -19,7 +21,7 @@ public class Menu : Form
 
     {
         // Tamanho da tela
-        Size = new Size(400,300);
+        Size = new Size(400,500);
 
         // Define nome navbar
         this.Text = "Menu";
@@ -41,17 +43,37 @@ public class Menu : Form
         btnProduto.Location = new Point(130, 80);
         btnProduto.Size = new Size(120, 30);
         btnProduto.Click += (sender, e) => {
-         ListaProduto lista = new ListaProduto();
+        ListaProduto lista = new ListaProduto();
         lista.ShowDialog();
         };
-
         this.Controls.Add(btnProduto);
+
+
+        btnEstoque = new Button();
+        btnEstoque.Text = "Estoque";
+        btnEstoque.Location = new Point(130, 140);
+        btnEstoque.Size = new Size(120, 30);
+        btnEstoque.Click += (sender, e) => {
+        ListaProduto lista = new ListaProduto();
+        lista.ShowDialog();
+        };
+        this.Controls.Add(btnEstoque);
+
+        btnSaldo = new Button();
+        btnSaldo.Text = "Saldo";
+        btnSaldo.Location = new Point(130, 200);
+        btnSaldo.Size = new Size(120, 30);
+        btnSaldo.Click += (sender, e) => {
+        ListaProduto lista = new ListaProduto();
+        lista.ShowDialog();
+        };
+        this.Controls.Add(btnSaldo);
 
         // Define parametros do botão Sair
 
         btnSair = new Button();
         btnSair.Text = "Sair";
-        btnSair.Location = new Point(130, 120);
+        btnSair.Location = new Point(130, 280);
         btnSair.Size =new Size(120, 30);
         btnSair.Click += (sender, e) => {
         Application.Exit();

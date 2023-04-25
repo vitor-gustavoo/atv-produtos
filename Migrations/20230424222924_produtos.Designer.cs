@@ -10,7 +10,7 @@ using Repository;
 namespace atvprodutos.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20230423045327_produtos")]
+    [Migration("20230424222924_produtos")]
     partial class produtos
     {
         /// <inheritdoc />
@@ -20,6 +20,24 @@ namespace atvprodutos.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
+
+            modelBuilder.Entity("Models.Produto", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<double>("Preco")
+                        .HasColumnType("double");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Produtos");
+                });
 #pragma warning restore 612, 618
         }
     }

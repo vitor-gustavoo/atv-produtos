@@ -17,7 +17,7 @@ namespace Views
         private ListBox listBox;
         private Button btnEditar;
         private Button btnDelete;
-        private Button btnSair;
+        private Button btnVoltar;
         private Button btnInserir;
 
 
@@ -85,14 +85,14 @@ namespace Views
             };
             this.Controls.Add(btnDelete);
 
-            btnSair = new Button();
-            btnSair.Text = "Sair";
-            btnSair.Location = new Point(400, 600);
-            btnSair.Size =new Size(80, 30);
-            btnSair.Click += (sender, e) => {
+            btnVoltar = new Button();
+            btnVoltar.Text = "Voltar";
+            btnVoltar.Location = new Point(400, 600);
+            btnVoltar.Size =new Size(80, 30);
+            btnVoltar.Click += (sender, e) => {
             this.Close();
             };
-            this.Controls.Add(btnSair);
+            this.Controls.Add(btnVoltar);
         }
 
         private void LoadList() 

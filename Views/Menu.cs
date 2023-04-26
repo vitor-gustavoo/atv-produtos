@@ -54,7 +54,7 @@ public class Menu : Form
         btnEstoque.Location = new Point(130, 140);
         btnEstoque.Size = new Size(120, 30);
         btnEstoque.Click += (sender, e) => {
-        ListaProduto lista = new ListaProduto();
+        ListaEstoque lista = new ListaEstoque();
         lista.ShowDialog();
         };
         this.Controls.Add(btnEstoque);
@@ -64,7 +64,7 @@ public class Menu : Form
         btnSaldo.Location = new Point(130, 200);
         btnSaldo.Size = new Size(120, 30);
         btnSaldo.Click += (sender, e) => {
-        ListaProduto lista = new ListaProduto();
+        ListaSaldo lista = new ListaSaldo();
         lista.ShowDialog();
         };
         this.Controls.Add(btnSaldo);

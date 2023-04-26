@@ -37,16 +37,9 @@ namespace Models
         public static Models.Produto BuscarProdutoId(int id)
         {
             Database db = new Database();
+            return db.Produtos.Find(id);
 
-            db.Produtos.Find(id);
-
-            Models.Produto produto = (
-                from p in db.Produtos
-                where p.Id == id 
-                select p
-            ).First();
-
-            return produto;
+            
 
         }
         

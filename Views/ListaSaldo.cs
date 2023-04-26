@@ -10,9 +10,9 @@ using System.Threading;
 
 namespace Views
 {
-    public class ListaEstoque : Form 
+    public class ListaSaldo : Form 
     {
-        private ListView listaEstoque;
+        private ListView listaSaldo;
         private ListBox listBox;
         private Button btnEditar;
         private Button btnDelete;
@@ -21,23 +21,25 @@ namespace Views
 
 
 
-        public ListaEstoque()
+        public ListaSaldo()
         {
 
             Size = new Size(700,700);
-            this.Text  = "Lista de Estoque";
+            this.Text  = "Lista de Saldo";
             this.StartPosition = FormStartPosition.CenterScreen;
 
-            listaEstoque = new ListView();
-            listaEstoque.Location = new Point(10,20);
-            listaEstoque.Size = new Size(660, 550);
-            listaEstoque.View = View.Details;
-            listaEstoque.FullRowSelect = true;
+            listaSaldo = new ListView();
+            listaSaldo.Location = new Point(10,20);
+            listaSaldo.Size = new Size(660, 550);
+            listaSaldo.View = View.Details;
+            listaSaldo.FullRowSelect = true;
 
-            listaEstoque.Columns.Add("ID", -2, HorizontalAlignment.Left);
-            listaEstoque.Columns.Add("Estoque", -2, HorizontalAlignment.Left);
+            listaSaldo.Columns.Add("ID", -2, HorizontalAlignment.Left);
+            listaSaldo.Columns.Add("Produto", -2, HorizontalAlignment.Left);
+            listaSaldo.Columns.Add("Estoque", -2, HorizontalAlignment.Left);
+            listaSaldo.Columns.Add("Quantidade", -2, HorizontalAlignment.Left);
 
-            this.Controls.Add(listaEstoque);
+            this.Controls.Add(listaSaldo);
             this.LoadList();
 
 
@@ -47,8 +49,8 @@ namespace Views
             btnInserir.Size =new Size(80, 30);
             btnInserir.Click += (sender, e) => 
             {
-            CadastroEstoque estoque = new CadastroEstoque();
-                estoque.ShowDialog();
+            CadastroSaldo saldo = new CadastroSaldo();
+                saldo.ShowDialog();
                 this.LoadList();
             };
             this.Controls.Add(btnInserir);
@@ -74,8 +76,8 @@ namespace Views
                 DialogResult result = MessageBox.Show("Você deseja realmente excluir?", "Sair", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)
                 {
-                    Controller.Estoque.ExcluirEstoque(
-                    (listaEstoque.SelectedItems[0].Text));
+                    Controller.Saldo.ExcluirSaldo(
+                    (listaSaldo.SelectedItems[0].Text));
                     this.LoadList();
                 }
                 else if (result == DialogResult.No)
@@ -100,11 +102,11 @@ namespace Views
         private void LoadList() 
         {
             
-            listaEstoque.Items.Clear();
+            listaSaldo.Items.Clear();
             foreach(Models.Estoque e in Controller.Estoque.BuscarEstoque()) 
             {
 
-                listaEstoque.Items.Add(
+                listaSaldo.Items.Add(
                     new ListViewItem(new [] { 
                         e.Id.ToString(), e.Nome
                     })

@@ -12,6 +12,8 @@ namespace Repository
     {
         
         public DbSet<Produto> Produtos { get; set;}
+        public DbSet<Estoque> Estoques {get; set;}
+        public DbSet<Saldo> Saldos {get; set;}
         
         
         string connection = "Server=localhost;Uid=root;Database=dbProdutos;";

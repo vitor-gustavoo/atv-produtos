@@ -14,11 +14,11 @@ namespace Views
     {
         private Label lblTitulo;
         private Label lblNome;
-        private Label lblPreco;
+        private Label lblEstoque;
         private Label lblQuantidade;
         private TextBox txtQuantidade;
-        public ComboBox comboBoxNome;
-        public ComboBox comboBoxPreco;
+        private ComboBox comboBoxProduto;
+        private ComboBox comboBoxEstoque;
 
         private Button btnCancel;
         private Button btnSalvar;
@@ -46,31 +46,40 @@ namespace Views
             //Define parametros da Label Nome
 
             lblNome = new Label();
-            lblNome.Text = "Nome";
+            lblNome.Text = "Produto";
             lblNome.Location = new Point(150,100);
-            lblNome.Size = new Size(50,20);
+            lblNome.Size = new Size(60,20);
             lblNome.Font = new Font("Arial", 10, FontStyle.Regular);
             this.Controls.Add(lblNome);
 
-            comboBoxNome = new ComboBox();
-            comboBoxNome.Location = new Point (150,120);
-            comboBoxNome.Size = new Size(250,40);
-            comboBoxNome.Font = new Font("Arial", 10, FontStyle.Regular);
-            this.Controls.Add(comboBoxNome);
+            comboBoxProduto = new ComboBox();
+            comboBoxProduto.Location = new Point (150,120);
+            comboBoxProduto.Size = new Size(250,40);
+            comboBoxProduto.Font = new Font("Arial", 10, FontStyle.Regular);
+            comboBoxProduto.Font = new Font("Arial", 10, FontStyle.Regular);
+              foreach (Models.Produto produto in Models.Produto.BuscarProdutos()) {
+                Models.Produto prd = Controller.Produto.BuscarProdutoId(produto.Id.ToString());
+                comboBoxProduto.Items.Add(produto.Nome);
+           }
+            this.Controls.Add(comboBoxProduto);
 
 
-            lblPreco = new Label();
-            lblPreco.Text = "Preço";
-            lblPreco.Location = new Point(150,150);
-            lblPreco.Size = new Size(50,20);
-            lblPreco.Font = new Font("Arial", 10, FontStyle.Regular);
-            this.Controls.Add(lblPreco);
+            lblEstoque = new Label();
+            lblEstoque.Text = "Estoque";
+            lblEstoque.Location = new Point(150,150);
+            lblEstoque.Size = new Size(60,20);
+            lblEstoque.Font = new Font("Arial", 10, FontStyle.Regular);
+            this.Controls.Add(lblEstoque);
 
-            comboBoxPreco = new ComboBox();
-            comboBoxPreco.Location = new Point (150,170);
-            comboBoxPreco.Size = new Size(250,40);
-            comboBoxPreco.Font = new Font("Arial", 10, FontStyle.Regular);
-            this.Controls.Add(comboBoxPreco);
+            comboBoxEstoque = new ComboBox();
+            comboBoxEstoque.Location = new Point (150,170);
+            comboBoxEstoque.Size = new Size(250,40);
+            comboBoxEstoque.Font = new Font("Arial", 10, FontStyle.Regular);
+              foreach (Models.Estoque estoque in Models.Estoque.BuscarEstoque()) {
+                Models.Estoque est = Controller.Estoque.BuscarEstoqueId(estoque.Id.ToString());
+                comboBoxEstoque.Items.Add(est.Nome);
+            }
+            this.Controls.Add(comboBoxEstoque);
 
             lblQuantidade = new Label();
             lblQuantidade.Text = "Quantidade";
@@ -91,9 +100,9 @@ namespace Views
             btnSalvar.Size = new Size(80, 30);
             btnSalvar.Click += (sender, e) => 
             {
-
-                // Controller.Saldo.CadastrarSaldo(this.txtQuantidade.Text, );
-                // this.Close();
+                Controller.Saldo.CadastrarSaldo(this.txtQuantidade.Text, this.comboBoxProduto.Text, this.comboBoxEstoque.Text);
+                // this.LoadList();
+                this.Close();
             };
             this.Controls.Add(btnSalvar);
             
@@ -106,6 +115,21 @@ namespace Views
             this.Controls.Add(btnCancel);
         }
 
+        // private void LoadList() 
+        // {
+            
+        //     comboBoxEstoque.Items.Clear();
+        //     foreach(Models.Saldo s in Controller.Saldo.BuscarSaldos()) 
+        //     {
+
+        //         comboBoxEstoque.Items.Add(
+        //             new ListViewItem(new [] { 
+        //                 s.Id.ToString(), s.Produto.ToString(), s.Estoque.ToString(), s.Quantidade.ToString()
+        //             })
+        //         );
+        //     }
+            
+        // } 
 
     }
 

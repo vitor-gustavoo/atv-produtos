@@ -33,14 +33,14 @@ namespace Controller
             saldo.EstoqueId = int.Parse(estoqueId);
         }
 
-        // public static List<Models.Saldo> BuscarSaldoId(string id)
-        // {
-        //     return Models.Saldo.BuscarSaldos().Where(s => s.EstoqueId.Id == id).ToList();
-        // }
-
-        public static List<Models.Saldo> BuscarSaldoId(int id)
+        public static Models.Estoque BuscarEstoqueId(string id)
         {
-            return Models.Saldo.BuscarSaldos().Where(s => s.Produto.Id == id).ToList();
+            return Models.Estoque.BuscarEstoqueId(int.Parse(id));
+        }
+
+        public static Models.Produto BuscarProdutoId(string id)
+        {
+            return Models.Produto.BuscarProdutoId(int.Parse(id));
         }
 
     }

@@ -103,12 +103,12 @@ namespace Views
         {
             
             listaSaldo.Items.Clear();
-            foreach(Models.Estoque e in Controller.Estoque.BuscarEstoque()) 
+            foreach(Models.Saldo s in Controller.Saldo.BuscarSaldos()) 
             {
 
                 listaSaldo.Items.Add(
                     new ListViewItem(new [] { 
-                        e.Id.ToString(), e.Nome
+                        s.Id.ToString(), s.ProdutoId.ToString(), s.EstoqueId.ToString()
                     })
                 );
             }

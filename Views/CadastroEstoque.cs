@@ -22,10 +22,13 @@ namespace Views
         private Button btnCancel;
         private Button btnSalvar;
 
+        private Models.Estoque? Estoque;
+
         
         
-        public CadastroEstoque()
+        public CadastroEstoque(Models.Estoque? estoque)
         {
+            this.Estoque = estoque;
             // Tamanho da tela
             Size = new Size(600,500);
 
@@ -57,13 +60,22 @@ namespace Views
             txtNome.Font = new Font("Arial", 10, FontStyle.Regular);
             this.Controls.Add(txtNome);
 
+            if (this.Estoque != null) {
+                txtNome.Text = this.Estoque.Nome;
+            }
+
             btnSalvar = new Button();
             btnSalvar.Text = "Salvar";
             btnSalvar.Location = new Point(450, 340);
             btnSalvar.Size = new Size(80, 30);
-            btnSalvar.Click += (sender, e) => {
-
-                Controller.Estoque.CadastrarEstoque(this.txtNome.Text);
+            btnSalvar.Click += (sender, e) => 
+            {
+                if (this.Estoque != null) {
+                    Controller.Estoque.EditarEstoque(this.Estoque.Id, this.txtNome.Text);
+                } else {
+                    Controller.Estoque.CadastrarEstoque(this.txtNome.Text);
+                }
+                
                 this.Close();
             };
             this.Controls.Add(btnSalvar);

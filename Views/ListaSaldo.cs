@@ -48,11 +48,11 @@ namespace Views
             btnInserir.Location = new Point(100, 600);
             btnInserir.Size =new Size(80, 30);
             btnInserir.Click += (sender, e) => 
-            {
-            CadastroSaldo saldo = new CadastroSaldo();
-                saldo.ShowDialog();
-                this.LoadList();
-            };
+            // {
+            // CadastroSaldo saldo = new CadastroSaldo();
+            //     saldo.ShowDialog();
+            //     this.LoadList();
+            // };
             this.Controls.Add(btnInserir);
 
             btnEditar = new Button();

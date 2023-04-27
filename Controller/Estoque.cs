@@ -25,9 +25,9 @@ namespace Controller
             Models.Estoque.ExcluirEstoque(int.Parse(id));
         }
 
-        public static void EditarEstoque(string id, string nome) {
+        public static void EditarEstoque(int id, string nome) {
             // Models.Produto.EditarProduto(id,nome, Double.Parse(preco));
-            Models.Estoque estoque = Models.Estoque.BuscarEstoqueId(int.Parse(id));
+            Models.Estoque estoque = Models.Estoque.BuscarEstoqueId(id);
             estoque.Nome = nome;
         }
     }

@@ -10,8 +10,8 @@ using Repository;
 namespace atvprodutos.Migrations
 {
     [DbContext(typeof(Database))]
-    [Migration("20230426002036_Almoxarifado")]
-    partial class Almoxarifado
+    [Migration("20230427003302_Almoxarife")]
+    partial class Almoxarife
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

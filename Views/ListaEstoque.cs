@@ -47,7 +47,7 @@ namespace Views
             btnInserir.Size =new Size(80, 30);
             btnInserir.Click += (sender, e) => 
             {
-            CadastroEstoque estoque = new CadastroEstoque();
+            CadastroEstoque estoque = new CadastroEstoque(null);
                 estoque.ShowDialog();
                 this.LoadList();
             };
@@ -58,11 +58,14 @@ namespace Views
             btnEditar.Location = new Point(200, 600);
             btnEditar.Size =new Size(80, 30);
             btnEditar.Click += (sender, e) => 
-            // {
-            //     Controller.Produto.EditarProduto(
-            //         int.Parse(this.lista.SelectedItems[0].SubItems[0].Text)
-            //     );
-            // }; 
+            {
+               Models.Estoque estoque = Controller.Estoque.BuscarEstoqueId(
+                    listaEstoque.SelectedItems[0].Text
+                );
+                CadastroEstoque est = new CadastroEstoque(estoque);
+                est.ShowDialog();
+                this.LoadList();
+            }; 
             this.Controls.Add(btnEditar);
 
             btnDelete = new Button();

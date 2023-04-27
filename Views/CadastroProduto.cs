@@ -22,9 +22,9 @@ namespace Views
         private Button btnCancel;
         private Button btnSalvar;
 
+        private Models.Produto? Produto;
         
-        
-        public CadastroProduto()
+        public CadastroProduto(Models.Produto? produto)
         {
             // Tamanho da tela
             Size = new Size(600,500);
@@ -78,9 +78,13 @@ namespace Views
             btnSalvar.Text = "Salvar";
             btnSalvar.Location = new Point(450, 340);
             btnSalvar.Size = new Size(80, 30);
-            btnSalvar.Click += (sender, e) => {
-
-                Controller.Produto.CadastrarProduto(this.txtNome.Text, this.txtPreco.Text);
+            btnSalvar.Click += (sender, e) => 
+            {
+                if (this.Produto != null) {
+                    Controller.Produto.EditarProduto(this.Produto.Id, this.txtNome.Text, this.txtPreco.Text);
+                } else {
+                    Controller.Produto.CadastrarProduto(this.txtNome.Text, this.txtPreco.Text);
+                }
                 this.Close();
             };
             this.Controls.Add(btnSalvar);

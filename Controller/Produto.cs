@@ -25,9 +25,9 @@ namespace Controller
             Models.Produto.ExcluirProduto(int.Parse(id));
         }
 
-        public static void EditarProduto(string id, string nome, string preco) {
+        public static void EditarProduto(int id, string nome, string preco) {
             // Models.Produto.EditarProduto(id,nome, Double.Parse(preco));
-            Models.Produto produto = Models.Produto.BuscarProdutoId(int.Parse(id));
+            Models.Produto produto = Models.Produto.BuscarProdutoId(id);
             produto.Nome = nome;
             produto.Preco = Double.Parse(preco);
         }

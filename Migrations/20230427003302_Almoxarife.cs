@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace atvprodutos.Migrations
 {
     /// <inheritdoc />
-    public partial class Almoxarifado : Migration
+    public partial class Almoxarife : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

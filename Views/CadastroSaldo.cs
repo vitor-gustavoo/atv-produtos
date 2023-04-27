@@ -19,13 +19,14 @@ namespace Views
         private TextBox txtQuantidade;
         private ComboBox comboBoxProduto;
         private ComboBox comboBoxEstoque;
-
         private Button btnCancel;
         private Button btnSalvar;
 
+        private Models.Saldo? Saldo;
+
         
         
-        public CadastroSaldo()
+        public CadastroSaldo(Models.Saldo? saldo)
         {
             // Tamanho da tela
             Size = new Size(600,500);
@@ -99,11 +100,13 @@ namespace Views
             btnSalvar.Location = new Point(450, 340);
             btnSalvar.Size = new Size(80, 30);
             btnSalvar.Click += (sender, e) => 
-            {
-                Controller.Saldo.CadastrarSaldo(this.txtQuantidade.Text, this.comboBoxProduto.Text, this.comboBoxEstoque.Text);
-                // this.LoadList();
+            // {if (this.Saldo != null) {
+            //         Controller.Saldo.EditarSaldo(this.Saldo.Id, this.Saldo.Estoque, this.Saldo.Produto);
+            //     } else {
+            //         Controller.Saldo.CadastrarSaldo(this.Saldo.Quantidade.ToString());
+            //     }
                 this.Close();
-            };
+            // };
             this.Controls.Add(btnSalvar);
             
 

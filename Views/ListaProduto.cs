@@ -47,8 +47,9 @@ namespace Views
             btnInserir.Text = "Inserir";
             btnInserir.Location = new Point(100, 600);
             btnInserir.Size =new Size(80, 30);
-            btnInserir.Click += (sender, e) => {
-                CadastroProduto produto = new CadastroProduto();
+            btnInserir.Click += (sender, e) => 
+            {
+                CadastroProduto produto = new CadastroProduto(null);
                 produto.ShowDialog();
                 this.LoadList();
             };
@@ -59,11 +60,14 @@ namespace Views
             btnEditar.Location = new Point(200, 600);
             btnEditar.Size =new Size(80, 30);
             btnEditar.Click += (sender, e) => 
-            // {
-            //     CadastroProduto produto = new CadastroProduto();
-            //     produto.ShowDialog();
-            //     this.LoadList();
-            // };
+            {
+                Models.Produto produto = Controller.Produto.BuscarProdutoId(
+                    lista.SelectedItems[0].Text
+                );
+                CadastroProduto prd = new CadastroProduto(produto);
+                prd.ShowDialog();
+                this.LoadList();
+            };
             this.Controls.Add(btnEditar);
             
             btnDelete = new Button();
